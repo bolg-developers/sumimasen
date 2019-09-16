@@ -3,7 +3,10 @@ load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 
 proto_library(
     name = "api_proto",
-    srcs = ["sumimasen.proto"],
+    srcs = [
+        "empty.proto",
+        "sumimasen.proto",
+    ],
     visibility = ["//visibility:public"],
 )
 
@@ -20,4 +23,11 @@ go_library(
     embed = [":api_go_proto"],
     importpath = "github.com/bolg-developers/sumimasen/api",
     visibility = ["//visibility:public"],
+)
+
+load("@build_stack_rules_proto//go:go_grpc_compile.bzl", "go_grpc_compile")
+
+go_grpc_compile(
+    name = "go_grpc",
+    deps = [":api_proto"],
 )
