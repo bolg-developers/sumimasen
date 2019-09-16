@@ -12,6 +12,6 @@ func newSumimasenService() SumimasenService {
 	return &SumimasenServiceImpl{}
 }
 
-func GetSumimasenService() SumimasenService {
+func GetSumimaseService() SumimasenService {
 	return sumimasenService
 }

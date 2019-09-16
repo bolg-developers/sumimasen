@@ -1,18 +1,18 @@
 syntax = "proto3";
 
-package bolg.sumimasen;
+package api;
 
-option go_package = "github.com/bolg-developers/bolg/proto";
+option go_package = "github.com/bolg-developers/sumimasen/api";
 option java_multiple_files = true;
 option java_outer_classname = "SumimasenProto";
-option java_package = "bolg_developers.bolg.sumimasen";
+option java_package = "bolg_developers.sumimasen.api";
 
 service Sumimasen {
-  rpc Sumimasen(SumimasenRequest) returns (SumimasenResponse) {}
+    rpc Sumimasen(SumimasenRequest) returns (SumimasenResponse) {}
 }
 
 message SumimasenRequest {}
 
 message SumimasenResponse {
-  string message = 1;
+    string message = 1;
 }
