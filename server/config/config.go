@@ -18,7 +18,7 @@ func Env() *Environment {
 }
 
 func init() {
-	if err := godotenv.Load("server/cmd/.env"); err != nil {
+	if err := godotenv.Load("server/.env"); err != nil {
 		log.Fatal("dotenv error:", err)
 	}
 	if err := envconfig.Process("", &env); err != nil {
