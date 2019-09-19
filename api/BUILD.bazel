@@ -31,3 +31,10 @@ go_grpc_compile(
     name = "go_grpc",
     deps = [":api_proto"],
 )
+
+load("@build_stack_rules_proto//android:android_grpc_compile.bzl", "android_grpc_compile")
+
+android_grpc_compile(
+    name = "android_grpc",
+    deps = [":api_proto"],
+)

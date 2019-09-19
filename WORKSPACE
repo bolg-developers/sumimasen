@@ -21,6 +21,9 @@ http_archive(
     sha256 = "7fc87f4170011201b1690326e8c16c5d802836e3a0d617d8f75c3af2b23180c4",
 )
 
+#===============================================================================
+# gazelle
+#===============================================================================
 load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
 
 go_rules_dependencies()
@@ -31,7 +34,9 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies()
 
-## ***** CHECK *****
+#===============================================================================
+# gRPC
+#===============================================================================
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
@@ -41,9 +46,25 @@ http_archive(
     strip_prefix = "rules_proto-b93b544f851fdcd3fc5c3d47aee3b7ca158a8841",
 )
 
+# ***** START Go *****
 load("@build_stack_rules_proto//go:deps.bzl", "go_grpc_compile")
 
 go_grpc_compile()
+# ***** END Go *****
+
+# ***** START Android *****
+load("@build_stack_rules_proto//:deps.bzl", "io_grpc_grpc_java")
+
+io_grpc_grpc_java()
+
+load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
+
+grpc_java_repositories(omit_com_google_protobuf = True)
+
+load("@build_stack_rules_proto//android:deps.bzl", "android_grpc_compile")
+
+android_grpc_compile()
+# ***** END Android *****
 
 go_repository(
     name = "co_honnef_go_tools",
