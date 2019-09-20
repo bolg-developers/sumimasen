@@ -32,4 +32,26 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //grpc類
+
+    // https://qiita.com/takusemba/items/ab7af6a0b748f7ac39d5
+    // にio.grpc:grpc-xxxのバージョンはprotoc-gen-grpc-javaと同じにすると書いてある。
+    // https://github.com/grpc/grpc-java のREADME.mdを見てみると
+    // io.grpc:protoc-gen-grpc-java:1.21.0という記述が見受けられるので1.21.0にしている。
+    implementation "io.grpc:grpc-okhttp:1.21.0"
+    implementation "io.grpc:grpc-protobuf:1.21.0"
+    implementation "io.grpc:grpc-stub:1.21.0"
+    implementation "javax.annotation:javax.annotation-api:1.2"
+
+    // for croutine
+    def coroutines_version = '1.0.1' //Kotlin coroutines用ライブラリ(async, await)のバージョン
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version" //Kotlin coroutines用ライブラリ(async, await)
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version" //Kotlin coroutines用ライブラリ(async, await)
+
+    // 64k問題回避: https://minpro.net/android-64k-problems
+    // compile は古いらしい: https://qiita.com/winningefa/items/9607c98c6ce7389c0520
+    //compile 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:multidex:1.0.3'
+
 }
