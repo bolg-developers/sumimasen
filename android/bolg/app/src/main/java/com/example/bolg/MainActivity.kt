@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun func() = GlobalScope.launch(Dispatchers.Main){
-        try {
             val ss = SumimasenGrpctask()
             async(Dispatchers.Default) {
                 val host = host_edit.text
@@ -29,8 +28,5 @@ class MainActivity : AppCompatActivity() {
             }.await().let {
                 tv.text = it.message
             }
-        }catch (e:Exception){
-            tv.setText(e.toString())
-        }
     }
 }
